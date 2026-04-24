@@ -1,14 +1,16 @@
 import { Eye, EyeOff } from 'lucide-react';
-import type { ComponentProps, Ref } from 'react';
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
-export default function PasswordInput({
-    className,
-    ref,
-    ...props
-}: Omit<ComponentProps<'input'>, 'type'> & { ref?: Ref<HTMLInputElement> }) {
+export type PasswordInputProps = Omit<
+    ComponentPropsWithoutRef<'input'>,
+    'type'
+>;
+
+const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
+    ({ className, ...props }, ref) => {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
@@ -34,4 +36,9 @@ export default function PasswordInput({
             </button>
         </div>
     );
-}
+    },
+);
+
+PasswordInput.displayName = 'PasswordInput';
+
+export default PasswordInput;

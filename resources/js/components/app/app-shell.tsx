@@ -1,15 +1,15 @@
 import { usePage } from '@inertiajs/react';
 import type { ReactNode } from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
-import type { AppVariant } from '@/types';
+import type { AppVariant, SharedPageProps } from '@/types';
 
-type Props = {
+export interface AppShellProps {
     children: ReactNode;
     variant?: AppVariant;
-};
+}
 
-export function AppShell({ children, variant = 'sidebar' }: Props) {
-    const isOpen = usePage().props.sidebarOpen;
+export function AppShell({ children, variant = 'sidebar' }: AppShellProps) {
+    const { sidebarOpen = true } = usePage<SharedPageProps>().props;
 
     if (variant === 'header') {
         return (
@@ -17,5 +17,7 @@ export function AppShell({ children, variant = 'sidebar' }: Props) {
         );
     }
 
-    return <SidebarProvider defaultOpen={isOpen}>{children}</SidebarProvider>;
+    return (
+        <SidebarProvider defaultOpen={sidebarOpen}>{children}</SidebarProvider>
+    );
 }

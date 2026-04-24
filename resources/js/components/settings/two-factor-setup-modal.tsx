@@ -2,8 +2,8 @@ import { Form } from '@inertiajs/react';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
 import { Check, Copy, ScanLine } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import AlertError from '@/components/alert-error';
-import InputError from '@/components/input-error';
+import AlertError from '@/components/feedback/alert-error';
+import InputError from '@/components/feedback/input-error';
 import { Button } from '@/components/ui/button';
 import {
     Dialog,
@@ -228,7 +228,7 @@ function TwoFactorVerificationStep({
     );
 }
 
-type Props = {
+export interface TwoFactorSetupModalProps {
     isOpen: boolean;
     onClose: () => void;
     requiresConfirmation: boolean;
@@ -238,7 +238,7 @@ type Props = {
     clearSetupData: () => void;
     fetchSetupData: () => Promise<void>;
     errors: string[];
-};
+}
 
 export default function TwoFactorSetupModal({
     isOpen,
@@ -250,7 +250,7 @@ export default function TwoFactorSetupModal({
     clearSetupData,
     fetchSetupData,
     errors,
-}: Props) {
+}: TwoFactorSetupModalProps) {
     const [showVerificationStep, setShowVerificationStep] =
         useState<boolean>(false);
 

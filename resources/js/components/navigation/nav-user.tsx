@@ -1,5 +1,7 @@
 import { usePage } from '@inertiajs/react';
 import { ChevronsUpDown } from 'lucide-react';
+import { UserInfo } from '@/components/navigation/user-info';
+import { UserMenuContent } from '@/components/navigation/user-menu-content';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -11,12 +13,11 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from '@/components/ui/sidebar';
-import { UserInfo } from '@/components/user-info';
-import { UserMenuContent } from '@/components/user-menu-content';
 import { useIsMobile } from '@/hooks/use-mobile';
+import type { SharedPageProps } from '@/types';
 
 export function NavUser() {
-    const { auth } = usePage().props;
+    const { auth } = usePage<SharedPageProps>().props;
     const { state } = useSidebar();
     const isMobile = useIsMobile();
 

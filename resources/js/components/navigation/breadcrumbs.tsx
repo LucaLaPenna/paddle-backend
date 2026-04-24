@@ -10,11 +10,13 @@ import {
 } from '@/components/ui/breadcrumb';
 import type { BreadcrumbItem as BreadcrumbItemType } from '@/types';
 
+export interface BreadcrumbsProps {
+    breadcrumbs: BreadcrumbItemType[];
+}
+
 export function Breadcrumbs({
     breadcrumbs,
-}: {
-    breadcrumbs: BreadcrumbItemType[];
-}) {
+}: BreadcrumbsProps) {
     return (
         <>
             {breadcrumbs.length > 0 && (

@@ -1,12 +1,14 @@
+export interface HeadingProps {
+    title: string;
+    description?: string;
+    variant?: 'default' | 'small';
+}
+
 export default function Heading({
     title,
     description,
     variant = 'default',
-}: {
-    title: string;
-    description?: string;
-    variant?: 'default' | 'small';
-}) {
+}: HeadingProps) {
     return (
         <header className={variant === 'small' ? '' : 'mb-8 space-y-0.5'}>
             <h2

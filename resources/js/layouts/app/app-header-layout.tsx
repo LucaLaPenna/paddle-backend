@@ -1,7 +1,7 @@
-import { AppContent } from '@/components/app-content';
-import { AppHeader } from '@/components/app-header';
-import { AppShell } from '@/components/app-shell';
+import { AppContent } from '@/components/app/app-content';
+import { AppShell } from '@/components/app/app-shell';
 import type { AppLayoutProps } from '@/types';
+import { AppHeaderView } from '@/views/app/app-header-view';
 
 export default function AppHeaderLayout({
     children,
@@ -9,7 +9,7 @@ export default function AppHeaderLayout({
 }: AppLayoutProps) {
     return (
         <AppShell variant="header">
-            <AppHeader breadcrumbs={breadcrumbs} />
+            <AppHeaderView breadcrumbs={breadcrumbs} />
             <AppContent variant="header">{children}</AppContent>
         </AppShell>
     );

@@ -3,10 +3,17 @@ import { useEffect } from 'react';
 import { toast } from 'sonner';
 import type { FlashToast } from '@/types/ui';
 
+interface FlashRouterEventDetail {
+    flash?: {
+        toast?: FlashToast;
+    };
+}
+
 export function useFlashToast(): void {
     useEffect(() => {
         return router.on('flash', (event) => {
-            const flash = (event as CustomEvent).detail?.flash;
+            const flash = (event as CustomEvent<FlashRouterEventDetail>).detail
+                ?.flash;
             const data = flash?.toast as FlashToast | undefined;
 
             if (!data) {

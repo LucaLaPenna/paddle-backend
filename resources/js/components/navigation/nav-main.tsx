@@ -9,7 +9,11 @@ import {
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import type { NavItem } from '@/types';
 
-export function NavMain({ items = [] }: { items: NavItem[] }) {
+export interface NavMainProps {
+    items: NavItem[];
+}
+
+export function NavMain({ items = [] }: NavMainProps) {
     const { isCurrentUrl } = useCurrentUrl();
 
     return (
